@@ -1,0 +1,15 @@
+#!/bin/bash
+check=$(/home-to-path/confluent/bin/kafka-topics --describe \
+    --zookeeper hostname:2181 | grep 'Leader: -1' | wc -l )
+
+echo "No of minus -1 is $check"
+
+if [ "$check" = "0" ];
+then
+    echo "we dont have minus one leader in partitions"
+
+else
+
+    echo "we have minus one leader in partitons"
+    mail -s "$check minus one leader in server,please login and check imm" 123@gmail.com < /dev/null
+fi
