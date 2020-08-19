@@ -1,0 +1,23 @@
+---
+  - hosts: hosts-list-file
+    serial: 1 
+    become: yes
+    become_user: yourkafkahome user
+    become: true
+    vars:
+       kafka_path: "/home-to-path/confluent"
+
+    tasks:
+
+    - name: stopping the kafka service
+      shell: |
+         {{kafka_path}}/bin/kafka-server-stop
+     
+    - name: wait for kafka service to be completely down
+      wait_for:
+       timeout: 12
+     
+    - name: starting kafka service
+      shell: |
+       source ~/.profile_kafka 
+       nohup /home-to-path/confluent/bin/kafka-server-start /home-to-path/confluent/etc/kafka/server.properties &
