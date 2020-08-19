@@ -1,0 +1,13 @@
+- hosts: hostsfilelist
+    become: yes
+#    serial: 1
+    become_user: yourhomeuser
+    become: true
+    tasks:
+      - name: change the lines
+        lineinfile:
+          path: /home-to-path-/confluent/etc/kafka/server.properties
+          regexp: '{{item.From}}'
+          line: '{{item.To}}'
+        with_items:
+        - { From: 'zookeeper.connect=hostname1:2181,hostname2:2181', To: 'zookeeper.connect=hostname3:2181,hostname4:2181' }
