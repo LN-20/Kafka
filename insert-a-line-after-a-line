@@ -1,0 +1,11 @@
+---
+  - hosts: hostname-list
+    become: yes
+    become_user: your-home-user-name
+    become: true
+    tasks:
+      - name: add a line after mentioned line
+        lineinfile:
+          path: Path of your File name
+          insertafter: "Mention the line"
+          line: "line or word you wanna to insert"
