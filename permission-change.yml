@@ -1,0 +1,13 @@
+---
+  - hosts: hostlists
+    become: yes
+#    strategy: free
+    become_user: your-home-user-name
+    become: true   
+    tasks:
+
+    - name:
+      file:
+        path: /path-to-change/yyy
+        recurse: yes
+        mode: '750'
