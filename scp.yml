@@ -1,0 +1,11 @@
+---
+  - hosts: hostslist
+    become: yes
+#    strategy: free
+    become_user: username
+    become: true   
+    tasks:
+    - name: copy from local to cluster nodes
+      copy:
+        src: /copy-file-path/
+        dest: /dest-file-path/
