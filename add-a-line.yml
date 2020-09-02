@@ -1,0 +1,16 @@
+---
+  - hosts: hostlist
+    become: yes
+    become_user: username
+    serial: 1
+    become: true
+    tasks:
+ 
+    - name: adding the line in a file
+      lineinfile: 
+         dest: /path-to-file-name/test.sh
+         insertafter: EOF  -->  Represent end of line
+         line: '{{ item }}'
+      with_items:
+        - 'change-1'
+        - 'change-2' 
