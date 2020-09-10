@@ -1,0 +1,9 @@
+Keystore → key/pem file. 
+=======================
+keytool -importkeystore -srckeystore keystore.jks -destkeystore keystore.p12 -srcstoretype JKS -deststoretype PKCS12 -deststorepass <password> -alias Aliasname(using keytool -list -v -keystore filename to find alias name)
+openssl pkcs12 -in keystore.p12 -nocerts -nodes -out key.pem
+openssl pkcs12 -in keystore.p12 -nokeys -nodes -out cert.pem
+
+Truststore→ ca-cert.pem
+=======================
+keytool -exportcert -alias aliasname -keystore truststore.jks -rfc -file ca-cert.pem
